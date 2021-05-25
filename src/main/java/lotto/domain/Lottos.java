@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.domain.generator.AutoGeneratable;
+import lotto.domain.generator.LottoNumberGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,9 +11,11 @@ public class Lottos {
     private final List<Lotto> lottos;
 
     public Lottos(int ticketCount) {
+        AutoGeneratable generator = new LottoNumberGenerator();
         this.lottos = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
-            lottos.add(new Lotto());
+            List<Integer> numbers = generator.autoGenerate();
+            lottos.add(new Lotto(numbers));
         }
     }
 
