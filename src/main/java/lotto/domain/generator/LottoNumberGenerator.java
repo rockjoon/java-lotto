@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class LottoNumberGenerator implements AutoGeneratable, ManualGeneratable {
+public class LottoNumberGenerator implements AutoGenerator {
 
     static List<Integer> LOTTO_NUMBER_POOL = Arrays.asList(
             1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15,
@@ -21,8 +21,7 @@ public class LottoNumberGenerator implements AutoGeneratable, ManualGeneratable 
         return Collections.unmodifiableList(list);
     }
 
-    @Override
-    public List<Integer> manualGenerate(String input) {
+    public static List<Integer> manualGenerate(String input) {
         String[] split = input.split(",");
         List<Integer> numbers = new ArrayList<>();
         for (String s : split) {
@@ -34,7 +33,7 @@ public class LottoNumberGenerator implements AutoGeneratable, ManualGeneratable 
         return Collections.unmodifiableList(numbers);
     }
 
-    private void isInLottoNumberPool(int number) {
+    private static void isInLottoNumberPool(int number) {
         if (!LOTTO_NUMBER_POOL.contains(number)) {
             throw new IllegalArgumentException("1부터 45까지의 숫자를 입력해주세요");
         }

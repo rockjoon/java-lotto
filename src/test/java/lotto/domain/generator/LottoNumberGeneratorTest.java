@@ -26,8 +26,7 @@ class LottoNumberGeneratorTest {
     @Test
     void manualGenerate() {
         String input = "1, 2, 3, 4, 5, 6";
-        ManualGeneratable manualGenerator = new LottoNumberGenerator();
-        List<Integer> numbers = manualGenerator.manualGenerate(input);
+        List<Integer> numbers = LottoNumberGenerator.manualGenerate(input);
         assertThat(numbers).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
@@ -35,8 +34,7 @@ class LottoNumberGeneratorTest {
     @Test
     void isInLottoNumberPool() {
         String input = "46, 47, 48, 49, 50, 51";
-        ManualGeneratable manualGenerator = new LottoNumberGenerator();
-        assertThatThrownBy(() -> manualGenerator.manualGenerate(input))
+        assertThatThrownBy(() -> LottoNumberGenerator.manualGenerate(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
