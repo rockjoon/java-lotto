@@ -14,8 +14,22 @@ public class Lotto {
         this.lotto = numbers;
     }
 
+    public int countSameNumber(Lotto winningLotto) {
+        int countSum = 0;
+        for (int number : lotto) {
+            countSum = getCountSum(winningLotto, countSum, number);
+        }
+        return countSum;
+    }
+
+    private int getCountSum(Lotto winningLotto, int countSum, int number) {
+        if (winningLotto.getLotto().contains(number)) {
+            countSum++;
+        }
+        return countSum;
+    }
+
     public List<Integer> getLotto() {
         return lotto;
     }
-
 }
