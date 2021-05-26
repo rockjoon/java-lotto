@@ -31,7 +31,6 @@ class LottoTest {
             "1, 2, 3, 4, 44, 45 = 4",
             "1, 2, 3, 43, 44, 45 = 3"
     }, delimiter = '=')
-
     void countSameNumber(String numbers, int expectedCount) {
         Lotto winningLotto = new Lotto(manualGenerate("1, 2, 3, 4, 5, 6"));
         Lotto lotto = new Lotto(manualGenerate(numbers));
