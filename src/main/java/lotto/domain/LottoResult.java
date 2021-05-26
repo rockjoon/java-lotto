@@ -1,20 +1,28 @@
 package lotto.domain;
 
-public class LottoResult {
+import java.util.Arrays;
 
-    static final int PRICE_PER_TICKET = 1000;
-    private int purchasePrice;
-    private int ticketCount;
+public enum LottoResult {
 
-    public LottoResult(int purchasePrice) {
-        if (purchasePrice < PRICE_PER_TICKET) {
-            throw new IllegalArgumentException("구매 가능 최소 금액은 " + PRICE_PER_TICKET + "입니다.");
-        }
-        this.purchasePrice = purchasePrice - purchasePrice % PRICE_PER_TICKET;
-        this.ticketCount = purchasePrice / PRICE_PER_TICKET;
+    FIRST_PRIZE(6, 2000000000),
+    THIRD_PRIZE(5, 1500000),
+    FOURTH_PRIZE(4, 50000),
+    FIFTH_PRIZE(3, 5000),
+    NONE(0, 0)
+    ;
+
+    final int sameCount;
+    final int prize;
+
+    LottoResult(int sameCount, int prize) {
+        this.sameCount = sameCount;
+        this.prize = prize;
     }
 
-    public int getTicketCount() {
-        return ticketCount;
+    static int findPrizeByCount(int sameCount) {
+        return Arrays.stream(LottoResult.values())
+                .filter(lottoResult -> lottoResult.sameCount == sameCount)
+                .findFirst().orElse(NONE).prize;
     }
+
 }
