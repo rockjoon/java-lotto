@@ -10,6 +10,10 @@ public class Lottos {
 
     private final List<Lotto> lottos;
 
+    public Lottos(List<Lotto> lottos) {
+        this.lottos = lottos;
+    }
+
     public Lottos(int ticketCount) {
         AutoGenerator generator = new LottoNumberGenerator();
         this.lottos = new ArrayList<>();
@@ -22,4 +26,14 @@ public class Lottos {
     public List<Lotto> getLottos() {
         return lottos;
     }
+
+    public int getTotalWinningPrize(Lotto winningLotto) {
+        int totalWinningPrize = 0;
+        for (Lotto lotto : lottos) {
+            int sameNumberCount = lotto.countSameNumber(winningLotto);
+            totalWinningPrize += LottoResult.findPrizeByCount(sameNumberCount);
+        }
+        return totalWinningPrize;
+    }
+
 }
