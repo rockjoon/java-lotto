@@ -18,7 +18,7 @@ public class LottoNumberGenerator implements AutoGenerator {
         Collections.shuffle(LOTTO_NUMBER_POOL);
         List<Integer> list = LOTTO_NUMBER_POOL.subList(0, 6);
         Collections.sort(list);
-        return Collections.unmodifiableList(list);
+        return Collections.unmodifiableList(new ArrayList<>(list));
     }
 
     public static List<Integer> manualGenerate(String input) {
