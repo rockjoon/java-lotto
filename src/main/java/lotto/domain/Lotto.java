@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.io.OutputView;
+
 import java.util.List;
 
 public class Lotto {
@@ -20,6 +22,10 @@ public class Lotto {
             countSum = getCountSum(winningLotto, countSum, number);
         }
         return countSum;
+    }
+
+    void printLottoNumber() {
+        OutputView.print(this.lotto.toString());
     }
 
     private int getCountSum(Lotto winningLotto, int countSum, int number) {

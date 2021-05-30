@@ -6,6 +6,9 @@ import lotto.domain.generator.LottoNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.io.Message.PURCHASE_COUNT;
+import static lotto.io.OutputView.*;
+
 public class Lottos {
 
     private final List<Lotto> lottos;
@@ -21,6 +24,7 @@ public class Lottos {
             List<Integer> numbers = generator.autoGenerate();
             lottos.add(new Lotto(numbers));
         }
+        printLottoNumbers(ticketCount);
     }
 
     public List<Lotto> getLottos() {
@@ -35,5 +39,14 @@ public class Lottos {
         }
         return totalWinningPrize;
     }
+
+    private void printLottoNumbers(int ticketCount) {
+        print(ticketCount + PURCHASE_COUNT.message);
+        for (Lotto lotto : lottos) {
+            lotto.printLottoNumber();
+        }
+        print("");
+    }
+
 
 }
